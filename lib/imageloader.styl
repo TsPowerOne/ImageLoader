@@ -1,0 +1,66 @@
+.ts-imageloader
+    display: inline-block
+    width: 300px
+    height: 300px
+
+    img
+        display: block
+        width: 100%
+        height: 100%
+        border: 1px solid gray
+
+    input[type="file"]
+        display: block
+        width: 72px
+        height: 24px
+        margin: 3px
+        float: right
+
+
+    button
+        padding: 2px 6px
+        border: 1px solid gray
+        border-radius: 2px
+        margin: 3px
+        float: right
+
+        &:hover
+            border-radius: 0
+            border-color: black
+            box-shadow: darkgray 0 2px 2px
+
+        &.disabled
+            background-color:gray
+            border-color:black
+            color: white
+
+            &:hover
+                border-radius: 0
+                box-shadow: transparent 0 0 0
+
+
+
+
+    button[erase]
+        color: white
+        background-color: red
+
+    button[erase].disabled,
+    button[upload].disabled
+            background-color:gray
+            border-color:black
+            color: white
+
+            &:hover
+                border-radius: 0
+                box-shadow: transparent 0 0 0
+
+    div[spinner]
+        display: block
+        position: absolute
+        width: inherit 
+        height :inherit
+        z-index: 10
+        background-color: white
+        opacity :0.3
+

@@ -1,9 +1,9 @@
 {
-  "name": "@tspower/fileloader",
+  "name": "@tspower/imageloader",
   "version": "1.0.0",
-  "description": "Simply file upload button",
-  "main": "./lib/fileloader.js",
-  "types": "./lib/fileloader.d.ts",
+  "description": "funny image loader component",
+  "main": "./lib/imageloader.js",
+  "types": "./lib/imageloader.d.ts",
   "directories": {
     "doc": "docs",
     "lib": "lib",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@tspower/core": "^1.5.0",
+    "@tspower/fileloader": "^1.0.0",
     "@tspower/http": "^1.1.0",
     "rxjs": "^6.3.3"
   }

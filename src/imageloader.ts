@@ -1,5 +1,5 @@
 import { FileLoader } from '@tspower/fileloader';
-import {htmlParse, log, setLocal, getLocal }from '@tspower/core';
+import {htmlParse, log, setLocal, getLocal, removeLocal }from '@tspower/core';
 import { Subject } from 'rxjs';
 import * as stili from './imageloader.styl';
 import { spinner } from '@tspower/spinner';
@@ -112,6 +112,9 @@ export class ImageLoader{
 
             this.image.src = (this.Src)?this.Src:"";
             this.image.title = (this.Src)?"placeholder":"";
+            if(this.Autosave){
+                removeLocal(`imageloader_${this.Id}_${this.InputName}`);
+            }
 
         });
         if(!this.DisplayUploadButton){
@@ -127,7 +130,7 @@ export class ImageLoader{
                 this.image.title = status.fileName;
                 this.FileName = status.name;
                 this.image.src = status.src;
-
+                this.enableButton(this.btn_erase);
             }
         }
 

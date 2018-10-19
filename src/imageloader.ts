@@ -19,7 +19,7 @@ export class ImageLoader{
 
 
     public uploaded$ = this.uploaded.asObservable();
-
+    public FileName = null;
     constructor(
 
         private Root:HTMLElement,
@@ -54,7 +54,7 @@ export class ImageLoader{
             var selectedFile = val[0];
             var reader = new FileReader();
             this.image.title = selectedFile.name;
-
+            this.FileName = selectedFile.name;
             reader.onload = function(event:any) {
               that.image.src = event.target.result;
             };
@@ -125,6 +125,7 @@ export class ImageLoader{
     private disableButton = (button:HTMLButtonElement):void =>{
         button.setAttribute("disabled", '');
     }
+
     setUploadUrl = (value:string)=>{
         this.Url = value;
 

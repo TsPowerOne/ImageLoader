@@ -41,7 +41,7 @@ export class ImageLoader{
         this.image = this.tag.querySelector("img");
         this.btn_load = this.tag.querySelector("button[upload]");
         this.btn_erase = this.tag.querySelector("button[erase]");
-        this.fileLoader = new FileLoader(this.tag, false, null, null, "display:block;width:72px;height:24px;");
+        this.fileLoader = new FileLoader(this.tag, false);
         this.Root.appendChild(this.tag);
         this.Init();
         

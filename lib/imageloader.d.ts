@@ -20,6 +20,8 @@ export declare class ImageLoader {
     constructor(Root: HTMLElement, Id?: string, InputName?: string, Src?: string, Url?: string, Style?: string, ButtonStyle?: string, ImageStyle?: string, DisplayUploadButton?: boolean);
     private Init;
     private create;
+    private enableButton;
+    private disableButton;
     setUploadUrl: (value: string) => void;
     setInputName: (value: string) => void;
     upload: () => void;

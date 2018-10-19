@@ -60,8 +60,10 @@ export class ImageLoader{
             };
 
             reader.readAsDataURL(selectedFile);
-            this.btn_load.classList.remove("disabled");
-            this.btn_erase.classList.remove("disabled");
+
+            this.enableButton(this.btn_erase);
+            this.enableButton(this.btn_load);
+            
         });
 
         this.btn_load.addEventListener("click", async(event)=>{
@@ -77,13 +79,13 @@ export class ImageLoader{
             promise.then(()=>{
 
                 this.spinner.style.display = 'none';
-                this.btn_erase.classList.add("disabled");
-                this.btn_load.classList.add("disabled");
+                this.disableButton(this.btn_erase);
+                this.disableButton(this.btn_load);
 
             }).catch(()=>{
                 
                 this.spinner.style.display = 'none';
-                this.btn_load.classList.add("disabled");
+                this.disableButton(this.btn_load);
 
             });
         });
@@ -109,14 +111,20 @@ export class ImageLoader{
         let template = `<div ${(Id)?Id:""}  ${(stile)?stile:""} class="ts-imageloader" >
                             <div spinner >${this.spinnerTemplate}</div>
                             <img ${(src)?src:""}  ${(imgStile)?imgStile:""} />
-                            <button upload ${(ButtonStyle)?ButtonStyle:""} class="disabled" > Upload </button>
-                            <button erase class="disabled" >Erase</button>
+                            <button upload ${(ButtonStyle)?ButtonStyle:""} disabled > Upload </button>
+                            <button erase disabled >Erase</button>
                         </div>`;
         let t = htmlParse(template);
 
         return t;
     }
 
+    private enableButton = (button:HTMLButtonElement):void =>{
+        button.removeAttribute("disabled");
+    }
+    private disableButton = (button:HTMLButtonElement):void =>{
+        button.setAttribute("disabled", '');
+    }
     setUploadUrl = (value:string)=>{
         this.Url = value;
 
@@ -134,6 +142,7 @@ export class ImageLoader{
     erase = ()=>{
         this.image.src = (this.Src)?this.Src:"";
         this.image.title = (this.Src)?"placeholder":"";
+        this.disableButton(this.btn_erase);
     }
 
 

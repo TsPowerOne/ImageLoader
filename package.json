@@ -1,6 +1,6 @@
 {
   "name": "@tspower/imageloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "funny image loader component",
   "main": "./lib/imageloader.js",
   "types": "./lib/imageloader.d.ts",
@@ -33,6 +33,7 @@
     "@tspower/core": "^1.5.0",
     "@tspower/fileloader": "^1.0.0",
     "@tspower/http": "^1.1.0",
+    "@tspower/spinner": "^1.0.0",
     "rxjs": "^6.3.3"
   }
 }

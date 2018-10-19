@@ -2,7 +2,7 @@ import { FileLoader } from '@tspower/fileloader';
 import {htmlParse, log} from '@tspower/core';
 import { Subject } from 'rxjs';
 import * as stili from './imageloader.styl';
-import { spinner } from '../../@tspower_spinner/lib/spinner';
+import { spinner } from '@tspower/spinner';
 stili.default
 
 

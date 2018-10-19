@@ -23,12 +23,15 @@ export class ImageLoader{
     constructor(
 
         private Root:HTMLElement,
-        private DisplayUploadButton:boolean = false,
-        private Url?:string,
+        private Id?:string,
         private InputName?:string,
+        
+        private Url?:string,
+        
         private Style?:string,
         private ButtonStyle?:string,
-        private ImageStyle?:string
+        private ImageStyle?:string,
+        private DisplayUploadButton:boolean = false,
 
     ){
         this.spinnerTemplate = new spinner("sfere").template;
@@ -99,7 +102,7 @@ export class ImageLoader{
         let imgStile = (this.ImageStyle)?`style="${this.ImageStyle}"`:null;
         let ButtonStyle = (this.ButtonStyle)?`style="${this.ButtonStyle}`:null;
         
-
+        
         let template = `<div ${(stile)?stile:""} class="ts-imageloader" >
                             <div spinner >${this.spinnerTemplate}</div>
                             <img src=""  ${(imgStile)?imgStile:""} />
@@ -107,6 +110,7 @@ export class ImageLoader{
                             <button erase class="disabled" >Erase</button>
                         </div>`;
         let t = htmlParse(template);
+        if(!this.DisplayUploadButton)t.style.display="none";
         return t;
     }
 

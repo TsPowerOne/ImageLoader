@@ -1,11 +1,12 @@
 export declare class ImageLoader {
     private Root;
-    private DisplayUploadButton;
-    private Url?;
+    private Id?;
     private InputName?;
+    private Url?;
     private Style?;
     private ButtonStyle?;
     private ImageStyle?;
+    private DisplayUploadButton;
     private fileLoader;
     private tag;
     private image;
@@ -15,7 +16,7 @@ export declare class ImageLoader {
     private spinnerTemplate;
     private spinner;
     uploaded$: import("rxjs/internal/Observable").Observable<Promise<any>>;
-    constructor(Root: HTMLElement, DisplayUploadButton?: boolean, Url?: string, InputName?: string, Style?: string, ButtonStyle?: string, ImageStyle?: string);
+    constructor(Root: HTMLElement, Id?: string, InputName?: string, Url?: string, Style?: string, ButtonStyle?: string, ImageStyle?: string, DisplayUploadButton?: boolean);
     private Init;
     private create;
     setUploadUrl: (value: string) => void;

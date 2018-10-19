@@ -1,5 +1,5 @@
 import { FileLoader } from '@tspower/fileloader';
-import {htmlParse, log} from '@tspower/core';
+import {htmlParse, log, setCookie, getCookie, removeCookie} from '@tspower/core';
 import { Subject } from 'rxjs';
 import * as stili from './imageloader.styl';
 import { spinner } from '@tspower/spinner';
@@ -17,7 +17,6 @@ export class ImageLoader{
     private spinnerTemplate:string;
     private spinner:HTMLElement;
 
-
     public uploaded$ = this.uploaded.asObservable();
     public FileName = null;
     constructor(
@@ -26,6 +25,7 @@ export class ImageLoader{
         private Id?:string,
         private InputName?:string,
         private Src?:string,
+        private Autosave?:boolean,
         private Url?:string,
         
         private Style?:string,
@@ -49,7 +49,10 @@ export class ImageLoader{
     
     private Init = ()=>{
         this.spinner.style.display = "none";
+
+
         this.fileLoader.changed$.subscribe(val=>{
+
             let that = this;
             var selectedFile = val[0];
             var reader = new FileReader();
@@ -63,6 +66,16 @@ export class ImageLoader{
 
             this.enableButton(this.btn_erase);
             this.enableButton(this.btn_load);
+
+            if(this.Autosave){
+                let status = {
+                    id: this.Id,
+                    name:this.InputName,
+                    fileName: this.FileName,
+                    file : selectedFile
+                };
+                setCookie(`imageloader_${this.Id}_${this.InputName}`, status);
+            }
             
         });
 
@@ -98,6 +111,22 @@ export class ImageLoader{
         });
         if(!this.DisplayUploadButton){
             this.btn_load.style.display = "none";
+        }
+
+        if(this.Autosave){
+            let that = this;
+            let status = getCookie(`imageloader_${this.Id}_${this.InputName}`);
+            if(status){
+                
+                var reader = new FileReader();
+                this.image.title = status.fileName;
+                this.FileName = status.name;
+                reader.onload = function(event:any) {
+                  that.image.src = event.target.result;
+                };
+    
+                reader.readAsDataURL(status.file);                
+            }
         }
 
     }
@@ -145,6 +174,8 @@ export class ImageLoader{
         this.image.title = (this.Src)?"placeholder":"";
         this.disableButton(this.btn_erase);
     }
+
+    setAutosave = (autosave:boolean)=>this.Autosave = autosave;
 
 
 }

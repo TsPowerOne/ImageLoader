@@ -101,9 +101,9 @@ export class ImageLoader{
         let stile = (this.Style)?`style="${this.Style}"`:null;
         let imgStile = (this.ImageStyle)?`style="${this.ImageStyle}"`:null;
         let ButtonStyle = (this.ButtonStyle)?`style="${this.ButtonStyle}`:null;
+        let Id = (this.Id)?`id=${this.Id}`:null;
         
-        
-        let template = `<div ${(stile)?stile:""} class="ts-imageloader" >
+        let template = `<div ${(Id)?Id:""}  ${(stile)?stile:""} class="ts-imageloader" >
                             <div spinner >${this.spinnerTemplate}</div>
                             <img src=""  ${(imgStile)?imgStile:""} />
                             <button upload ${(ButtonStyle)?ButtonStyle:""} class="disabled" > Upload </button>

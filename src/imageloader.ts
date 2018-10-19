@@ -25,7 +25,7 @@ export class ImageLoader{
         private Root:HTMLElement,
         private Id?:string,
         private InputName?:string,
-        
+        private Src?:string,
         private Url?:string,
         
         private Style?:string,
@@ -105,7 +105,7 @@ export class ImageLoader{
         let imgStile = (this.ImageStyle)?`style="${this.ImageStyle}"`:null;
         let ButtonStyle = (this.ButtonStyle)?`style="${this.ButtonStyle}`:null;
         let Id = (this.Id)?`id=${this.Id}`:null;
-        let src = (this.Url)?`src=${this.Url}`:null;
+        let src = (this.Src)?`src=${this.Src}`:null;
         let template = `<div ${(Id)?Id:""}  ${(stile)?stile:""} class="ts-imageloader" >
                             <div spinner >${this.spinnerTemplate}</div>
                             <img ${(src)?src:""}  ${(imgStile)?imgStile:""} />
@@ -119,6 +119,7 @@ export class ImageLoader{
 
     setUploadUrl = (value:string)=>{
         this.Url = value;
+
     }
 
     setInputName = (value:string)=>{
@@ -131,8 +132,8 @@ export class ImageLoader{
     }
 
     erase = ()=>{
-        this.image.src = "";
-        this.image.title = "";
+        this.image.src = (this.Src)?this.Src:"";
+        this.image.title = (this.Src)?"placeholder":"";
     }
 
 

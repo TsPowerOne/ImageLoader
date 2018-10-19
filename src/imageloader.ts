@@ -1,5 +1,5 @@
 import { FileLoader } from '@tspower/fileloader';
-import {htmlParse, log, setCookie, getCookie, removeCookie} from '@tspower/core';
+import {htmlParse, log, setLocal, getLocal }from '@tspower/core';
 import { Subject } from 'rxjs';
 import * as stili from './imageloader.styl';
 import { spinner } from '@tspower/spinner';
@@ -55,11 +55,24 @@ export class ImageLoader{
 
             let that = this;
             var selectedFile = val[0];
+
             var reader = new FileReader();
             this.image.title = selectedFile.name;
             this.FileName = selectedFile.name;
+            let status = null;
             reader.onload = function(event:any) {
               that.image.src = event.target.result;
+
+                if(that.Autosave){
+                    status = {
+                        id: that.Id,
+                        name: that.InputName,
+                        fileName: that.FileName,
+                        src : event.target.result
+                    };
+                    setLocal(`imageloader_${that.Id}_${that.InputName}`, status);
+                }
+
             };
 
             reader.readAsDataURL(selectedFile);
@@ -67,15 +80,7 @@ export class ImageLoader{
             this.enableButton(this.btn_erase);
             this.enableButton(this.btn_load);
 
-            if(this.Autosave){
-                let status = {
-                    id: this.Id,
-                    name:this.InputName,
-                    fileName: this.FileName,
-                    file : selectedFile
-                };
-                setCookie(`imageloader_${this.Id}_${this.InputName}`, status);
-            }
+
             
         });
 
@@ -115,17 +120,14 @@ export class ImageLoader{
 
         if(this.Autosave){
             let that = this;
-            let status = getCookie(`imageloader_${this.Id}_${this.InputName}`);
+            let status = getLocal(`imageloader_${this.Id}_${this.InputName}`);
             if(status){
                 
                 var reader = new FileReader();
                 this.image.title = status.fileName;
                 this.FileName = status.name;
-                reader.onload = function(event:any) {
-                  that.image.src = event.target.result;
-                };
-    
-                reader.readAsDataURL(status.file);                
+                this.image.src = status.src;
+
             }
         }
 

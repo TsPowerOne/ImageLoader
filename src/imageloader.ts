@@ -94,6 +94,9 @@ export class ImageLoader{
             this.image.title = "";
 
         });
+        if(!this.DisplayUploadButton){
+            this.btn_load.style.display = "none";
+        }
 
     }
     private create = ():HTMLElement=>{
@@ -110,7 +113,7 @@ export class ImageLoader{
                             <button erase class="disabled" >Erase</button>
                         </div>`;
         let t = htmlParse(template);
-        if(!this.DisplayUploadButton)t.style.display="none";
+
         return t;
     }
 

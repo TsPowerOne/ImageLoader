@@ -90,8 +90,8 @@ export class ImageLoader{
 
         this.btn_erase.addEventListener("click", (event)=>{
 
-            this.image.src = "";
-            this.image.title = "";
+            this.image.src = (this.Src)?this.Src:"";
+            this.image.title = (this.Src)?"placeholder":"";
 
         });
         if(!this.DisplayUploadButton){

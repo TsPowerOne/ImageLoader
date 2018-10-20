@@ -2,7 +2,7 @@ import { FileLoader } from '@tspower/fileloader';
 import {htmlParse, log, setLocal, getLocal, removeLocal }from '@tspower/core';
 import { Subject } from 'rxjs';
 import * as stili from './imageloader.styl';
-import { spinner } from '@tspower/spinner';
+import { Spin_Sphere} from '@tspower/spinner';
 stili.default
 
 
@@ -34,8 +34,7 @@ export class ImageLoader{
         private DisplayUploadButton:boolean = false,
 
     ){
-        this.spinnerTemplate = new spinner("sfere").template;
-
+        this.spinnerTemplate = new Spin_Sphere().template;
         this.tag = this.create();
         this.spinner = this.tag.querySelector("div[spinner]");
         this.image = this.tag.querySelector("img");

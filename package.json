@@ -33,7 +33,7 @@
     "@tspower/core": "^1.5.0",
     "@tspower/fileloader": "^1.0.1",
     "@tspower/http": "^1.1.0",
-    "@tspower/spinner": "^1.1.3",
+    "@tspower/spinner": "^2.0.0",
     "rxjs": "^6.3.3"
   }
 }

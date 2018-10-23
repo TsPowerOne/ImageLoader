@@ -14,10 +14,13 @@ export class ImageLoader{
     private btn_load:HTMLButtonElement;
     private btn_erase:HTMLButtonElement;
     private uploaded =  new Subject<Promise<any>>();
+    private erased = new Subject<any>();
     private spinnerTemplate:string;
     private spinner:HTMLElement;
 
     public uploaded$ = this.uploaded.asObservable();
+    public erased$ = this.erased.asObservable();
+
     public FileName = null;
     constructor(
 
@@ -114,6 +117,13 @@ export class ImageLoader{
             if(this.Autosave){
                 removeLocal(`imageloader_${this.Id}_${this.InputName}`);
             }
+            let status ={
+                id: this.Id,
+                name: this.InputName,
+                fileName: this.FileName,
+                src :this.image.src
+            };
+            this.erased.next(status);
 
         });
         if(!this.DisplayUploadButton){
@@ -177,6 +187,16 @@ export class ImageLoader{
         this.image.src = (this.Src)?this.Src:"";
         this.image.title = (this.Src)?"placeholder":"";
         this.disableButton(this.btn_erase);
+        if(this.Autosave){
+            removeLocal(`imageloader_${this.Id}_${this.InputName}`);
+        }
+        let status ={
+            id: this.Id,
+            name: this.InputName,
+            fileName: this.FileName,
+            src :this.image.src
+        };
+        this.erased.next(status);
     }
 
     setAutosave = (autosave:boolean)=>this.Autosave = autosave;

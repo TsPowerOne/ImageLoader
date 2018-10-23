@@ -15,9 +15,11 @@ export declare class ImageLoader {
     private btn_load;
     private btn_erase;
     private uploaded;
+    private erased;
     private spinnerTemplate;
     private spinner;
     uploaded$: import("rxjs/internal/Observable").Observable<Promise<any>>;
+    erased$: import("rxjs/internal/Observable").Observable<any>;
     FileName: any;
     constructor(Root: HTMLElement, Id?: string, InputName?: string, Src?: string, Autosave?: boolean, Url?: string, Style?: string, ButtonStyle?: string, ImageStyle?: string, DisplayUploadButton?: boolean);
     private Init;

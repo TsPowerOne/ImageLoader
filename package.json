@@ -1,6 +1,6 @@
 {
   "name": "@tspower/imageloader",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "description": "Funny image loader component",
   "main": "./lib/imageloader.js",
   "types": "./lib/imageloader.d.ts",
@@ -34,21 +34,21 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/chai": "^4.1.6",
-    "@types/mocha": "^5.2.5",
+    "@types/chai": "^4.2.3",
+    "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.2.0",
     "mocha-junit-reporter": "^1.23.1",
-    "ts-node": "^8.3.0",
+    "ts-node": "^8.4.1",
     "typedoc": "^0.15.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.3"
   },
   "dependencies": {
-    "@tspower/core": "^1.16.0",
-    "@tspower/fileloader": "^1.1.0",
-    "@tspower/http": "^1.1.0",
-    "@tspower/spinner": "^2.1.0",
-    "rxjs": "^6.3.3"
+    "@tspower/core": "^1.16.3",
+    "@tspower/fileloader": "^1.1.1",
+    "@tspower/http": "^1.1.3",
+    "@tspower/spinner": "^2.1.1",
+    "rxjs": "^6.5.3"
   },
   "bugs": {
     "url": "https://github.com/TsPowerOne/ImageLoader/issues"

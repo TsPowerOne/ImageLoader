@@ -1,14 +1,16 @@
+export declare class ImageLoaderSetter {
+    Root: HTMLElement;
+    Id?: string;
+    InputName?: string;
+    Src?: string;
+    Autosave?: boolean;
+    Url?: string;
+    Style?: string;
+    ButtonStyle?: string;
+    ImageStyle?: string;
+    DisplayUploadButton: boolean;
+}
 export declare class ImageLoader {
-    private Root;
-    private Id?;
-    private InputName?;
-    private Src?;
-    private Autosave?;
-    private Url?;
-    private Style?;
-    private ButtonStyle?;
-    private ImageStyle?;
-    private DisplayUploadButton;
     private fileLoader;
     private tag;
     private image;
@@ -18,10 +20,21 @@ export declare class ImageLoader {
     private erased;
     private spinnerTemplate;
     private spinner;
+    private Root;
+    private Autosave;
+    private Id?;
+    private InputName?;
+    private Src?;
+    private Url?;
+    private Style?;
+    private ButtonStyle?;
+    private ImageStyle?;
+    private DisplayUploadButton;
+    private Loader;
     uploaded$: import("rxjs").Observable<Promise<any>>;
     erased$: import("rxjs").Observable<any>;
     FileName: any;
-    constructor(Root: HTMLElement, Id?: string, InputName?: string, Src?: string, Autosave?: boolean, Url?: string, Style?: string, ButtonStyle?: string, ImageStyle?: string, DisplayUploadButton?: boolean);
+    constructor(setter: ImageLoaderSetter);
     private Init;
     private create;
     private enableButton;

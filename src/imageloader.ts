@@ -5,7 +5,19 @@ import * as stili from './imageloader.styl';
 import { Spin_Sphere} from '@tspower/spinner';
 stili.default
 
-
+export class ImageLoaderSetter {
+    public Root:HTMLElement = null;
+    public Id?:string = null;
+    public InputName?:string = null;
+    public Src?:string = null;
+    public Autosave?:boolean = false;
+    public Url?:string = null;
+    
+    public Style?:string = null;
+    public ButtonStyle?:string = null;
+    public ImageStyle?:string = null;
+    public DisplayUploadButton:boolean = false ;
+}
 export class ImageLoader{
 
     private fileLoader:FileLoader;
@@ -17,36 +29,44 @@ export class ImageLoader{
     private erased = new Subject<any>();
     private spinnerTemplate:string;
     private spinner:HTMLElement;
+    private Root: HTMLElement;
+    private Autosave: boolean = false;
 
+    private Id?:string = null;
+    private InputName?:string = null;
+    private Src?:string = null;
+    private Url?:string = null;
+    
+    private Style?:string = null;
+    private ButtonStyle?:string = null;
+    private ImageStyle?:string = null;
+    private DisplayUploadButton:boolean = false ;
+    private Loader:HTMLElement = null;
     public uploaded$ = this.uploaded.asObservable();
     public erased$ = this.erased.asObservable();
 
     public FileName = null;
-    constructor(
-
-        private Root:HTMLElement,
-        private Id?:string,
-        private InputName?:string,
-        private Src?:string,
-        private Autosave?:boolean,
-        private Url?:string,
-        
-        private Style?:string,
-        private ButtonStyle?:string,
-        private ImageStyle?:string,
-        private DisplayUploadButton:boolean = false,
-
-    ){
+    constructor(setter: ImageLoaderSetter){
+        this.Autosave = setter.Autosave;
+        this.Id = setter.Id;
+        this.InputName = setter.InputName;
+        this.Src = setter.Src;
+        this.Url = setter.Url;
+        this.Style = setter.Style;
+        this.ButtonStyle = setter.ButtonStyle;
+        this.ImageStyle = setter.ImageStyle;
+        this.DisplayUploadButton = setter.DisplayUploadButton;
+        this.Root = setter.Root;
         this.spinnerTemplate = new Spin_Sphere().template;
         this.tag = this.create();
+        this.Loader = this.tag.querySelector("div.ts-imageloader");
         this.spinner = this.tag.querySelector("div[spinner]");
         this.image = this.tag.querySelector("img");
         this.btn_load = this.tag.querySelector("button[upload]");
         this.btn_erase = this.tag.querySelector("button[erase]");
-        this.fileLoader = new FileLoader(this.tag, false);
         this.Root.appendChild(this.tag);
+        this.fileLoader = new FileLoader(this.Loader, false);
         this.Init();
-        
     }
     
     private Init = ()=>{
@@ -144,7 +164,7 @@ export class ImageLoader{
         }
 
     }
-    private create = ():HTMLElement=>{
+    private create = ():HTMLElement => {
 
         let stile = (this.Style)?`style="${this.Style}"`:null;
         let imgStile = (this.ImageStyle)?`style="${this.ImageStyle}"`:null;

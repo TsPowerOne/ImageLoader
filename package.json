@@ -1,6 +1,6 @@
 {
   "name": "@tspower/imageloader",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Funny image loader component",
   "main": "./lib/imageloader.js",
   "types": "./lib/imageloader.d.ts",
